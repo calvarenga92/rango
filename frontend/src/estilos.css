@@ -939,6 +939,37 @@ input[aria-invalid="true"] {
   .toast { right: 16px; left: 16px; width: auto; }
 }
 
+/* Aviso de servidor ligando (API no plano gratuito do Render) */
+.aviso-servidor {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: min(420px, calc(100vw - 32px));
+  padding: 12px 16px;
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  background: var(--superficie);
+  color: var(--texto);
+  box-shadow: var(--sombra-g);
+  transform: translateX(-50%);
+}
+.aviso-servidor strong { display: block; font-size: 0.9rem; }
+.aviso-servidor p { margin-top: 2px; color: var(--texto-apoio); font-size: 0.85rem; }
+.aviso-servidor__giro {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--acento-suave);
+  border-top-color: var(--acento);
+  border-radius: 50%;
+  animation: girar 800ms linear infinite;
+}
+@keyframes girar { to { transform: rotate(360deg); } }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
