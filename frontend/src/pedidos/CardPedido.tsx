@@ -43,10 +43,11 @@ export function CardPedido({ pedido, agora, aoAlterarStatus }: Props) {
   return (
     <article
       className={`cartao card-pedido${finalizado ? ' card-pedido--final' : ''}`}
+      data-status={pedido.status.toLowerCase()}
       aria-labelledby={`pedido-${pedido.id}`}
     >
       <div className="card-pedido__linha">
-        <span className="card-pedido__id">#{pedido.id}</span>
+        <span className="card-pedido__id">#{String(pedido.id).padStart(4, '0')}</span>
         {finalizado ? (
           <span className={`etiqueta etiqueta--${pedido.status.toLowerCase()}`}>
             {ROTULO_STATUS[pedido.status]}
@@ -101,7 +102,8 @@ export function CardPedido({ pedido, agora, aoAlterarStatus }: Props) {
             <button
               key={status}
               type="button"
-              className="botao botao--bloco"
+              className="botao botao--bloco botao--rumo"
+              data-status={status.toLowerCase()}
               disabled={emAndamento !== null}
               onClick={() => void alterar(status)}
             >

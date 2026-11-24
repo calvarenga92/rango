@@ -11,7 +11,7 @@ import { Modal } from '../componentes/Modal';
 import { Toast } from '../componentes/Toast';
 import { CardPedido } from './CardPedido';
 import { NovoPedidoForm } from './NovoPedidoForm';
-import { COLUNAS, STATUS_FINAIS, type IdColuna } from './rotulos';
+import { COLUNAS, ICONE_COLUNA, STATUS_FINAIS, type IdColuna } from './rotulos';
 import { useAgora } from './useAgora';
 import { usePedidos } from './usePedidos';
 
@@ -77,6 +77,7 @@ export function PedidosPage() {
       <main className="quadro-pagina">
         <div className="quadro-titulo">
           <div>
+            <span className="quadro-titulo__selo">Painel da cozinha</span>
             <h1>Quadro de pedidos</h1>
             <p className="apoio">Cada card mostra só as ações que o pedido permite agora.</p>
           </div>
@@ -100,10 +101,13 @@ export function PedidosPage() {
               <section
                 key={coluna.id}
                 className={`coluna${colunaAtiva === coluna.id ? ' coluna--ativa' : ''}`}
+                data-status={coluna.id.toLowerCase()}
               >
                 <div className="coluna__cabecalho">
                   <h2>
-                    <span className={`ponto ponto--${coluna.id.toLowerCase()}`} />
+                    <span className="coluna__icone">
+                      <Icone nome={ICONE_COLUNA[coluna.id]} tamanho={15} />
+                    </span>
                     {coluna.titulo}
                   </h2>
                 </div>
@@ -151,8 +155,10 @@ export function PedidosPage() {
                   type="button"
                   aria-pressed={colunaAtiva === coluna.id}
                   className={`chip${colunaAtiva === coluna.id ? ' chip--ativo' : ''}`}
+                  data-status={coluna.id.toLowerCase()}
                   onClick={() => setColunaAtiva(coluna.id)}
                 >
+                  <Icone nome={ICONE_COLUNA[coluna.id]} tamanho={14} />
                   {coluna.titulo}
                   <span className="chip__contagem">{coluna.pedidos.length}</span>
                 </button>
@@ -164,11 +170,14 @@ export function PedidosPage() {
                 <section
                   key={coluna.id}
                   className={`coluna${colunaAtiva === coluna.id ? ' coluna--ativa' : ''}`}
+                  data-status={coluna.id.toLowerCase()}
                   aria-labelledby={`coluna-${coluna.id}`}
                 >
                   <div className="coluna__cabecalho">
                     <h2 id={`coluna-${coluna.id}`}>
-                      <span className={`ponto ponto--${coluna.id.toLowerCase()}`} />
+                      <span className="coluna__icone">
+                      <Icone nome={ICONE_COLUNA[coluna.id]} tamanho={15} />
+                    </span>
                       {coluna.titulo}
                     </h2>
                     <span className="contagem">{coluna.pedidos.length}</span>

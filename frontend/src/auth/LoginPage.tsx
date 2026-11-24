@@ -45,15 +45,47 @@ export function LoginPage() {
       <section className="login__vitrine" aria-hidden="true">
         <Marca />
         <div className="login__chamada">
-          <h2>Do pedido à porta, sem perder nenhum de vista.</h2>
+          <h2>
+            Do pedido à porta, <em>sem perder nenhum</em> de vista.
+          </h2>
           <p>Acompanhe cada pedido pelo quadro: recebido, em preparo, a caminho e entregue.</p>
         </div>
-        <ul className="login__etapas">
-          <li><span className="ponto ponto--recebido" />Recebido</li>
-          <li><span className="ponto ponto--em_preparo" />Em preparo</li>
-          <li><span className="ponto ponto--saiu_para_entrega" />Saiu para entrega</li>
-          <li><span className="ponto ponto--entregue" />Entregue</li>
-        </ul>
+
+        <div className="login__comandas">
+          <div className="comanda-demo comanda-demo--tras" data-status="saiu_para_entrega">
+            <div className="comanda-demo__linha">
+              <span className="comanda-demo__id">#0141</span>
+              <span className="comanda-demo__status">
+                <Icone nome="moto" tamanho={13} />
+                Saiu para entrega
+              </span>
+            </div>
+            <strong>Marcos Lima</strong>
+            <small>Rua Harmonia, 412 — Vila Madalena</small>
+          </div>
+          <div className="comanda-demo" data-status="em_preparo">
+            <div className="comanda-demo__linha">
+              <span className="comanda-demo__id">#0142</span>
+              <span className="comanda-demo__status">
+                <Icone nome="chama" tamanho={13} />
+                Em preparo · 6 min
+              </span>
+            </div>
+            <strong>Ana Ribeiro</strong>
+            <small>2× Pizza margherita · 1× Guaraná 2 L</small>
+            <div className="comanda-demo__total">
+              <span>Total</span>
+              <b>R$ 104,70</b>
+            </div>
+          </div>
+        </div>
+
+        <ol className="login__etapas">
+          <li data-status="recebido"><Icone nome="comanda" tamanho={16} />Recebido</li>
+          <li data-status="em_preparo"><Icone nome="chama" tamanho={16} />Em preparo</li>
+          <li data-status="saiu_para_entrega"><Icone nome="moto" tamanho={16} />Saiu para entrega</li>
+          <li data-status="entregue"><Icone nome="feito" tamanho={16} />Entregue</li>
+        </ol>
       </section>
 
       <section className="login__painel">

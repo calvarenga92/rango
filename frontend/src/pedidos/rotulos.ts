@@ -32,6 +32,14 @@ export const COLUNAS: Coluna[] = [
   { id: 'FINALIZADOS', titulo: 'Finalizados', status: ['ENTREGUE', 'CANCELADO'] },
 ];
 
+/** Ícone de cada coluna do quadro. */
+export const ICONE_COLUNA = {
+  RECEBIDO: 'comanda',
+  EM_PREPARO: 'chama',
+  SAIU_PARA_ENTREGA: 'moto',
+  FINALIZADOS: 'feito',
+} as const satisfies Record<IdColuna, string>;
+
 export const STATUS_FINAIS: StatusPedido[] = ['ENTREGUE', 'CANCELADO'];
 
 /** Pedido parado no mesmo status por mais tempo que isso ganha destaque. */

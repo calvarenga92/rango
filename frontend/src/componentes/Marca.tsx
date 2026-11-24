@@ -7,8 +7,10 @@ export function Marca() {
         <Icone nome="marca" tamanho={20} />
       </span>
       <span className="marca__texto">
-        <strong>Rango</strong>
-        <small>Rastreador de Pedidos</small>
+        <strong>
+          rango<span className="marca__ponto">.</span>
+        </strong>
+        <small>Rastreador de pedidos</small>
       </span>
     </div>
   );
