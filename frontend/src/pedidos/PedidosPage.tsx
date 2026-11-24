@@ -63,7 +63,7 @@ export function PedidosPage() {
         <Marca />
         <div className="topo__acoes">
           <AlternarTema />
-          <button type="button" className="botao" onClick={() => setNovoAberto(true)}>
+          <button type="button" className="botao" onClick={() => setNovoAberto(true)} aria-label="Novo pedido">
             <Icone nome="mais" />
             <span className="some-no-celular">Novo pedido</span>
           </button>
