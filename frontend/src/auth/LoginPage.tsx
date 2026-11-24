@@ -4,6 +4,7 @@ import { AlternarTema } from '../componentes/AlternarTema';
 import { Icone } from '../componentes/Icone';
 import { Marca } from '../componentes/Marca';
 import { useAuth } from './contexto';
+import { CONTA_DEMO } from './demo';
 
 type Modo = 'entrar' | 'cadastrar';
 
@@ -28,6 +29,20 @@ export function LoginPage() {
       } else {
         await cadastrar(nome, { email, senha });
       }
+    } catch (causa) {
+      setErro(mensagemDoErro(causa));
+    } finally {
+      setEnviando(false);
+    }
+  }
+
+  async function entrarComoVisitante() {
+    setEmail(CONTA_DEMO.email);
+    setSenha(CONTA_DEMO.senha);
+    setErro(null);
+    setEnviando(true);
+    try {
+      await entrar(CONTA_DEMO);
     } catch (causa) {
       setErro(mensagemDoErro(causa));
     } finally {
@@ -151,6 +166,33 @@ export function LoginPage() {
           <button type="submit" className="botao botao--bloco botao--grande" disabled={enviando}>
             {enviando ? 'Enviando…' : modo === 'entrar' ? 'Entrar' : 'Criar conta'}
           </button>
+
+          {modo === 'entrar' && (
+            <div className="login__demo">
+              <span className="login__demo-divisor">ou</span>
+              <p>
+                <strong>Quer só conhecer o sistema?</strong> Entre com a conta de demonstração:
+              </p>
+              <dl className="login__demo-dados">
+                <div>
+                  <dt>Login</dt>
+                  <dd>{CONTA_DEMO.email}</dd>
+                </div>
+                <div>
+                  <dt>Senha</dt>
+                  <dd>{CONTA_DEMO.senha}</dd>
+                </div>
+              </dl>
+              <button
+                type="button"
+                className="botao botao--secundario botao--bloco"
+                onClick={() => void entrarComoVisitante()}
+                disabled={enviando}
+              >
+                Entrar como visitante
+              </button>
+            </div>
+          )}
 
           <p className="login__alternar">
             {modo === 'entrar' ? 'Ainda não tem conta?' : 'Já tem conta?'}{' '}

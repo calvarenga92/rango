@@ -13,6 +13,9 @@ spring:
     open-in-view: false
 
 app:
+  # Conta de visitante (teste / 123456) e pedidos de exemplo ao ligar.
+  demo:
+    ativo: ${DEMO_ATIVO:true}
   jwt:
     secret: ${JWT_SECRET:chave-de-desenvolvimento-trocar-em-producao-min-32-bytes}
     expiracao-minutos: 120
